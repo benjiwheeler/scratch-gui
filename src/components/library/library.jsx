@@ -50,6 +50,15 @@ class LibraryComponent extends React.Component {
             selectedTag: ALL_TAG.tag
         };
     }
+    componentDidMount () {
+        // Add a history event only if it's not currently for our library. This
+        // avoids polluting the history with many entries. We only need one.
+        if (history.state === this.id) {
+            history.replaceState(this.id, this.id);
+        } else {
+            history.pushState(this.id, this.id);
+        }
+    }
     componentDidUpdate (prevProps, prevState) {
         if (prevState.filterQuery !== this.state.filterQuery ||
             prevState.selectedTag !== this.state.selectedTag) {
