@@ -30,7 +30,7 @@
 }
 
 .menu-item-bordered {
-    border-top: 2px solid $text-primary-transparent;
+    border-top: 1px solid $ui-black-transparent;
 }
 
 .menu-item-bordered:hover {
