@@ -25,6 +25,10 @@ class ErrorBoundary extends React.Component {
         // Log errors to analytics, leaving out browsers that are not in our recommended set
         if (recommendedBrowser() && window.Sentry) {
             window.Sentry.withScope(scope => {
+                scope.setTag('project', 'gui');
+                if (this.props.action) {
+                    scope.setTag('errorboundary', this.props.action);
+                }
                 Object.keys(info).forEach(key => {
                     scope.setExtra(key, info[key]);
                 });
